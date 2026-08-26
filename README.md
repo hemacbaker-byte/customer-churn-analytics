@@ -5,9 +5,9 @@
 This project analyzes credit card customer churn across **10,127 accounts** (16.1% baseline churn rate) to identify early behavioral warning signs. Using `pandas`, `matplotlib`, `seaborn`, and `plotly`, the analysis moves away from static demographic profiling to highlight dynamic usage metrics — such as transaction drops, mid-tier spending patterns, low utilization ratios, and rising support calls — providing actionable insights for proactive retention strategies. No machine learning or feature engineering was used, per the project's defined scope; findings are drawn purely through EDA and visualisation.
 
 ## Guidance
-- [ETL Notebook](jupyter_notebooks/ETL_ChurnAnalysis.ipynb)
-- [Analysis & Visualisation Notebook](jupyter_notebooks/Analysis_Visualization.ipynb)
-- [Conclusions Notebook](jupyter_notebooks/Conclusions.ipynb)
+- [ETL Notebook](jupyter_notebooks/01_ETL_ChurnAnalysis.ipynb)
+- [Analysis & Visualisation Notebook](jupyter_notebooks/02_Analysis_Visualization.ipynb)
+- [Conclusions Notebook](jupyter_notebooks/03_Conclusions.ipynb)
 - [Raw Data](data/raw/BankChurners.csv)
 - [Cleaned Data](data/cleaned/BankChurners_cleaned.csv)
 
