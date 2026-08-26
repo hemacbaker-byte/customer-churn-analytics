@@ -69,12 +69,13 @@ Financial data is sensitive. `CLIENTNUM` was retained only as a unique account i
 # Planning:
 * I used a github [project board] (https://github.com/users/hemacbaker-byte/projects/2/views/1) to help me plan and keep track of my progress.
 
+
 # Development Roadmap:
-Had an issue with plotly chart, with the help of claude transported to the image as static for easy view. 
+Had an issue with plotly chart, with the help of claude transported to the image as static for easy view.
 
 
 ## Credits
-* [Code Institute](https://codeinstitute.net/) — Data Analytics with AI Bootcamp curriculum.
+* [Code Institute](https://codeinstitute.net/) — Referred to LMS for charts maipulation and usage.
 * [Kaggle: sakshigoyal7](https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers) — dataset source.
 * Claude  — Used for debugging, story telling.
 * Rory - Guided with Vs code commit.
