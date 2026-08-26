@@ -7,7 +7,7 @@ This project analyzes credit card customer churn across **10,127 accounts** (16.
 ## Guidance
 - [ETL Notebook](jupyter_notebooks/01_ETL_ChurnAnalysis.ipynb)
 - [Analysis & Visualisation Notebook](jupyter_notebooks/02_Analysis_Visualization.ipynb)
-- [Conclusions Notebook](jupyter_notebooks/03_Conclusions.ipynb)
+- [Conclusions Notebook](jupyter_notebooks/03_Conclusion.ipynb)
 - [Raw Data](data/raw/BankChurners.csv)
 - [Cleaned Data](data/cleaned/BankChurners_cleaned.csv)
 
