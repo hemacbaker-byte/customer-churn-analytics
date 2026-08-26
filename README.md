@@ -67,7 +67,7 @@ Financial data is sensitive. `CLIENTNUM` was retained only as a unique account i
 * **Version Control**: Git & GitHub
 
 # Planning:
-* I used a github [project board] (https://github.com/users/hemacbaker-byte/projects/2/views/1) to help me plan and keep track of my progress.
+* I used a github [project board](https://github.com/users/hemacbaker-byte/projects/2/views/1) to help me plan and keep track of my progress.
 
 
 # Development Roadmap:
