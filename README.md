@@ -75,9 +75,9 @@ Had an issue with plotly chart, with the help of claude transported to the image
 
 
 ## Credits
-* [Code Institute](https://codeinstitute.net/) — Referred to LMS for charts maipulation and usage & template used for README.
+* [Code Institute](https://codeinstitute.net/) — Referred to LMS for charts maipulation and Pandas & template used for README.
 * [Kaggle: sakshigoyal7](https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers) — dataset source.
-* Claude  — Used for debugging, story telling.
+* Claude - Used for debugging, story telling, Plotly.
 * Rory - Guided with Vs code commit.
 * Vasi - Guided to improvise my project board.
 
