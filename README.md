@@ -1,13 +1,15 @@
+```markdown
 ![Churn Analysis Banner](images/Cc%20Churn%20Banner.jpg)
 
 
 ## 📌 Project Overview
-This project analyzes credit card customer churn across **10,127 accounts** (16.1% baseline churn rate) to identify early behavioral warning signs. Using `pandas`, `matplotlib`, `seaborn`, and `plotly`, the analysis moves away from static demographic profiling to highlight dynamic usage metrics — such as transaction drops, mid-tier spending patterns, low utilization ratios, and rising support calls — providing actionable insights for proactive retention strategies. No machine learning or feature engineering was used, per the project's defined scope; findings are drawn purely through EDA and visualisation.
+This project analyzes credit card customer churn across **10,127 accounts** (16.1% baseline churn rate) to identify early behavioral warning signs. Using `pandas`, `matplotlib`, `seaborn`, `plotly`, `scipy`, and `scikit-learn`, the analysis combines exploratory analysis, statistical hypothesis testing, and predictive modelling — moving from static demographic profiling to a validated, actionable churn risk model for proactive retention strategies.
 
 ## Guidance
 - [ETL Notebook](jupyter_notebooks/01_ETL_ChurnAnalysis.ipynb)
 - [Analysis & Visualisation Notebook](jupyter_notebooks/02_Analysis_Visualization.ipynb)
 - [Conclusions Notebook](jupyter_notebooks/03_Conclusion.ipynb)
+- [Statistical Analysis & Predictive Model Notebook](jupyter_notebooks/04_Statistical_ML_Analysis.ipynb)
 - [Raw Data](data/raw/BankChurners.csv)
 - [Cleaned Data](data/cleaned/BankChurners_cleaned.csv)
 
@@ -40,6 +42,14 @@ A bank manager is concerned about rising customer churn in their credit card ser
 * **Hypothesis**: Longer inactivity periods indicate churn better than customer service calls.
 * **Result**: Inactive months are non-predictive (both groups sit at 2–3 months). Higher support contact count (r = +0.20, median 3 calls vs. 2) is a much stronger warning sign of customer frustration before exit.
 
+### Hypothesis 6: Transaction Activity Is Statistically Significant
+* **Hypothesis**: The difference in transaction count between churned and active customers is statistically significant, not due to random chance.
+* **Result**: **Supported**. A two-sample t-test confirmed the gap is statistically significant (p < 0.05), formally validating the earlier visual and correlation findings.
+
+### Hypothesis 7: Churn Can Be Predicted from Behavioural Data
+* **Hypothesis**: A machine learning model trained on behavioural and account features can reliably identify customers likely to churn.
+* **Result**: **Supported**. A logistic regression model achieved 83% accuracy and 78% recall on churned customers, correctly identifying roughly 3 in 4 at-risk accounts — demonstrating that churn is genuinely predictable from transaction activity, utilization, balance, and contact frequency, not demographic traits.
+
 ## 🎨 The Rationale to Map Business Requirements to Data Visualisations
 * **Pie Chart (Customer Churn Distribution)**: Establishes the 16.1% baseline churn rate to quantify overall revenue risk and justify retention spending.
 * **Bar Chart (Churn by Gender)**: Compares attrition across genders to determine whether marketing should target a specific sex (shows negligible impact).
@@ -49,21 +59,38 @@ A bank manager is concerned about rising customer churn in their credit card ser
 * **Transaction Count vs. Amount Scatter Plot**: Uncovers the high-risk mid-tier cluster (30–90 transactions, £1K–£10K spend) and confirms high-activity users (100+) rarely churn.
 * **Revolving Balance & Utilization Box Plots**: Demonstrates that attrited accounts carry lower balances and low utilization (<0.3), framing a behavioral warning signal.
 * **Months Inactive & Contacts Count Box Plots**: Disproves inactivity as a churn signal while establishing rising support calls as an active marker of customer frustration.
+* **Confusion Matrix**: Visualises the logistic regression model's prediction accuracy, distinguishing correctly identified churned/active customers from misclassifications.
+
+## 📈 Statistical Analysis
+Core statistical concepts (mean, median, standard deviation, probability distribution, hypothesis testing) are explained and applied directly to the data. A two-sample t-test confirmed that the gap in transaction count between churned and active customers is statistically significant (p < 0.05), validating the earlier visual finding with formal evidence.
+
+## 🤖 Predictive Model
+A logistic regression model was built using scikit-learn to estimate churn probability, chosen for its interpretability over black-box alternatives like random forests — producing clear probability scores a manager can act on directly. `class_weight='balanced'` was used to address the 16%/84% churn imbalance without manually resampling the data.
+
+**Model Performance:** 83% overall accuracy, 78% recall on churned customers — correctly identifying roughly 3 in 4 at-risk accounts. Recall was prioritised over precision, since missing an at-risk customer is costlier to the bank than an unnecessary retention offer to a loyal one.
+
+## 🎯 Customer Segmentation
+Customers were segmented into Low, Medium, and High risk groups based on transaction activity and utilization ratio, allowing the bank to prioritise retention efforts by risk tier rather than treating all customers equally.
+
+## 💡 Prototype: Interactive Retention Tool
+Based on identified churn drivers, a proposed prototype is an internal dashboard where staff input a customer's key metrics (transaction count, utilization, contact frequency) to receive an instant churn risk score, enabling proactive, targeted retention outreach rather than reactive account review.
 
 ## 🛠️ Analysis Techniques & Methods
 * **ETL Pipeline**: Data cleaning, "Unknown" value handling, duplicate checks, and irrelevant column removal in Jupyter Notebooks.
 * **Exploratory Data Analysis (EDA)**: Univariate distributions, correlation matrix evaluation, and bivariate risk pattern isolation.
+* **Statistical Testing**: Hypothesis testing (two-sample t-test) to validate observed differences between churned and active customers.
+* **Predictive Modelling**: Logistic regression classification using scikit-learn, with train/test split and class-imbalance handling.
 * **Visual Data Storytelling**: Combined static (matplotlib, seaborn) and interactive (plotly) charts to map business metrics to actionable risk profiles.
 
 ## ⚖️ Ethical Considerations & Data Privacy
 Financial data is sensitive. `CLIENTNUM` was retained only as a unique account identifier and excluded from all analytical interpretation, holding no meaning of its own. "Unknown" values in `Education_Level`, `Marital_Status`, and `Income_Category` (7–15% of records each) were kept as a valid category rather than imputed, to avoid introducing assumptions not supported by the data.
-
 
 ## 🧰 Technologies Used
 * **Environment**: VS Code, Jupyter Notebooks
 * **Language**: Python
 * **Data Manipulation**: pandas, numpy
 * **Data Visualization**: matplotlib, seaborn, plotly
+* **Statistics & Machine Learning**: scipy, scikit-learn
 * **Version Control**: Git & GitHub
 
 # Planning:
@@ -73,11 +100,13 @@ Financial data is sensitive. `CLIENTNUM` was retained only as a unique account i
 # Development Roadmap:
 Had an issue with plotly chart, with the help of claude transported to the image as static for easy view.
 
+## 🔄 Reflection: Learning Journey
+This project extended an initial EDA-only analysis into a full predictive pipeline, requiring new skills in statistical hypothesis testing and scikit-learn model building. The main challenge was correctly handling class imbalance in the churn target — addressed through `class_weight='balanced'` rather than manual oversampling, keeping the approach transparent and reproducible. This experience directly mirrors real-world data analyst work: moving from descriptive insight to predictive, actionable tooling for business stakeholders.
 
 ## Credits
 * [Code Institute](https://codeinstitute.net/) — Referred to LMS for charts maipulation and Pandas & template used for README.
 * [Kaggle: sakshigoyal7](https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers) — dataset source.
-* Claude - Used for debugging, story telling, Plotly.
+* Claude - Used for debugging, story telling, Plotly, statistical analysis, and predictive modelling guidance.
 * Rory - Guided with Vs code commit.
 * Vasi - Guided to improvise my project board.
 
@@ -85,4 +114,4 @@ Had an issue with plotly chart, with the help of claude transported to the image
 Banner image created for this project using Gemini.
 
 # Acknowledgements: 
-Special thanks to my tutors Emma Lamont, Rory, Vasi, Marko from the Code Institute for all their help on the course!
+Special thanks to my tutors Emma Lamont, Idir and code institute.
