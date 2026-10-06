@@ -1,4 +1,4 @@
-```markdown
+
 ![Churn Analysis Banner](images/Cc%20Churn%20Banner.jpg)
 
 
